@@ -14,7 +14,7 @@ const app = express();
 // Middleware
 const origin =
   process.env.NODE_ENV === 'production'
-    ? 'http://localhost:5173'
+    ? 'https://new-grocery-frontend.onrender.com'
     : 'http://localhost:5173';
 
 app.use(cors());
@@ -23,7 +23,7 @@ app.use(cors());
 const server = http.createServer(app);
 const io = require('socket.io')(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://new-grocery-frontend.onrender.com",
     methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true
   }
