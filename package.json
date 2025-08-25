@@ -7,9 +7,13 @@
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "test": "server",
+    "test": "jest",
     "start": "node server.js"
   },
+  
+  "jest": {
+  "testMatch": ["**/?(*.)+(test).[jt]s?(x)"]
+},
   "dependencies": {
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
@@ -18,10 +22,16 @@
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "helmet": "^8.1.0",
+    "imagekit": "^6.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.4",
     "multer": "^2.0.2",
     "nodemon": "^3.1.10",
     "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.28.3",
+    "jest": "^30.0.5",
+    "supertest": "^7.1.4"
   }
 }

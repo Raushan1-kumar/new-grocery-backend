@@ -1,5 +1,6 @@
 const Product = require('../models/product');
-const { uploadImage } = require('../config/cloudinary');
+// const { uploadImage } = require('../config/cloudinary');
+const { uploadImage } = require('../config/imagekit');
 
 
 function normalizeCategory(category) {
@@ -18,13 +19,23 @@ exports.addProduct = async (req, res) => {
     let { category, productName, attributes, sizes } = req.body;
     let imageUrl;
 
+    // if (req.file) {
+    //   try {
+    //     imageUrl = await uploadImage(req.file.buffer);
+    //   } catch (error) {
+    //     return res.status(500).json({ message: 'Failed to upload image to Cloudinary', error: error.message });
+    //   }
+    // }
+
     if (req.file) {
-      try {
-        imageUrl = await uploadImage(req.file.buffer);
-      } catch (error) {
-        return res.status(500).json({ message: 'Failed to upload image to Cloudinary', error: error.message });
-      }
-    }
+  try {
+    imageUrl = await uploadImage(req.file.buffer, req.file.originalname);
+  } catch (error) {
+    return res.status(500).json({ message: 'Failed to upload image to ImageKit', error: error.message });
+  }
+}
+
+
 
     attributes = typeof attributes === "string" ? JSON.parse(attributes) : attributes;
     sizes = typeof sizes === "string" ? JSON.parse(sizes) : sizes;

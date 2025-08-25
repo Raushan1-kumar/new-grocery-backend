@@ -1,0 +1,18 @@
+config:
+  target: "http://localhost:5000"   # your backend URL
+  phases:
+    - duration: 60                  # test duration in seconds
+      arrivalRate: 50               # 50 new users per second
+scenarios:
+  - flow:
+      - get:
+          url: "/api/products"
+      - post:
+          url: "/api/offers"
+          json:
+            product: "product123"
+            categoryName: "Electronics"
+            minPurchase: 1000
+            discount: 10
+            description: "Test offer"
+            createdBySeller: "seller1"
